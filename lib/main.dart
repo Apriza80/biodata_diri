@@ -55,6 +55,7 @@ class BiodataPage extends StatelessWidget {
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 500),
               child: Container(
+                margin: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
@@ -68,10 +69,10 @@ class BiodataPage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    // Header Card
+                    // Header Kartu Profil
                     Container(
                       width: double.infinity,
-                      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
                       decoration: const BoxDecoration(
                         gradient: LinearGradient(
                           colors: [Color(0xFF1E3C72), Color(0xFF2A5298)],
@@ -92,11 +93,11 @@ class BiodataPage extends StatelessWidget {
                               shape: BoxShape.circle,
                             ),
                             child: const CircleAvatar(
-                              radius: 38,
+                              radius: 40,
                               backgroundImage: NetworkImage(fotoUrl),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 12),
                           Text(
                             nama,
                             textAlign: TextAlign.center,
@@ -106,7 +107,7 @@ class BiodataPage extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height: 2),
+                          const SizedBox(height: 4),
                           Text(
                             '$nim | $prodi',
                             textAlign: TextAlign.center,
@@ -119,12 +120,18 @@ class BiodataPage extends StatelessWidget {
                       ),
                     ),
 
-                    // Detail Informasi
+                    // Detail Informasi (Menampilkan Nama, NIM, Prodi, Semester, Kota, Email)
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          _buildInfoRow(Icons.person_outline, 'Nama', nama),
+                          const Divider(height: 14, color: Color(0xFFEEEEEE)),
+                          _buildInfoRow(Icons.badge_outlined, 'NIM', nim),
+                          const Divider(height: 14, color: Color(0xFFEEEEEE)),
+                          _buildInfoRow(Icons.school_outlined, 'Program Studi', prodi),
+                          const Divider(height: 14, color: Color(0xFFEEEEEE)),
                           _buildInfoRow(Icons.timeline_outlined, 'Semester', 'Semester $semester'),
                           const Divider(height: 14, color: Color(0xFFEEEEEE)),
                           _buildInfoRow(Icons.location_city_outlined, 'Kota', kota),
@@ -232,22 +239,24 @@ class BiodataPage extends StatelessWidget {
           child: Icon(icon, color: const Color(0xFF1E3C72), size: 18),
         ),
         const SizedBox(width: 12),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              label,
-              style: const TextStyle(fontSize: 10, color: Colors.grey),
-            ),
-            Text(
-              value,
-              style: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: const TextStyle(fontSize: 10, color: Colors.grey),
               ),
-            ),
-          ],
+              Text(
+                value,
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black87,
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );
